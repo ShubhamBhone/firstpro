@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="{% static "css/st1.css" %}">
+  </head>
+  <body>
+    <h1>TODO APP</h1>
+    <form class="" action="/add/" method="post">{% csrf_token %}
+      <label for="fn">Name:</label>
+      <input id='fn' type="text" name="stuname" placeholder="Enter Name" required>
+      <br><br>
+      <label for="fn">Roll NO:</label>
+      <input id='fn' type="number" name="sturoll" placeholder="Enter rollno" required>
+      <br><br>
+      <label for="fn">Marks:</label>
+      <input id='fn' type="number" name="stumarks" placeholder="Enter Marks" required>
+      <br><br>
+      <button type="submit" name="button" style="width:20%" >Submit</button>
+      <br><br><br>
+    </form>
+    {%if stu_list %}
+    {%for stu in stu_list%}
+      {{stu.name}}
+      {{stu.rollno}}
+      {{stu.marks}}
+      <form class="" action="/delete/{{stu.id}}/" method="post" style="display:inline">{% csrf_token %}
+      <button type="submit" name="button">Delete</button><br><br>
+      </form>
+    {%endfor%}
+    {% endif %}
+  </body>
+</html>
